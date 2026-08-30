@@ -82,7 +82,7 @@
   (failN.hidden && okN.hidden) ? pass('honeypot-silent')
     : fail('honeypot-silent', 'a note appeared');
 
-  // ---- 9. FORM: no webhook -> whatsapp fallback keeps the lead ---------
+  // ---- 9. FORM: a failed send shows a retry message and keeps the input -
   document.getElementById('company').value = '';
   document.getElementById('name').value = 'ישראל ישראלי';
   document.getElementById('phone').value = '052-1234567';
@@ -91,21 +91,24 @@
   form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
   await tick(); await tick();
 
-  if (failN.hidden) {
-    fail('fallback-shown', 'no note');
-  } else {
-    const link = failN.querySelector('a[href^="https://wa.me/"]');
-    if (!link) fail('fallback-wa-link', 'missing');
-    else {
-      const href = decodeURIComponent(link.getAttribute('href'));
-      const hasAll = href.includes('ישראל ישראלי')
-                  && href.includes('052-1234567')
-                  && href.includes('שולחן אוכל 220x100');
-      hasAll ? pass('fallback-carries-lead') : fail('fallback-carries-lead', href.slice(0, 90));
-    }
-    const tel = failN.querySelector('a[href^="tel:"]');
-    tel ? pass('fallback-has-tel') : fail('fallback-has-tel', 'missing');
-  }
+  (!failN.hidden && failN.textContent.includes('לנסות שוב'))
+    ? pass('failure-shows-retry') : fail('failure-shows-retry', 'hidden=' + failN.hidden);
+
+  // the fields must survive, otherwise "try again" means retyping everything
+  (document.getElementById('name').value === 'ישראל ישראלי'
+    && document.getElementById('email').value === 'israel@example.com'
+    && document.getElementById('msg').value === 'שולחן אוכל 220x100')
+    ? pass('fields-kept-on-failure') : fail('fields-kept-on-failure', 'cleared');
+
+  // No contact channel that is absent from business-facts.md may appear.
+  // Inspect hrefs and visible text only — scanning innerHTML would match
+  // this very file, which is injected into the body when the suite runs.
+  const hrefs = Array.from(document.querySelectorAll('a[href]'))
+    .map((a) => a.getAttribute('href')).join(' ');
+  const seen = hrefs + ' ' + document.body.innerText;
+  const ghosts = ['wa.me', 'whatsapp', 'api.whatsapp'].filter((c) => seen.includes(c));
+  ghosts.length ? fail('no-invented-channel', ghosts.join(','))
+                : pass('no-invented-channel');
 
   // ---- 10. button re-enabled after failure ------------------------------
   const send = document.getElementById('send');

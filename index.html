@@ -160,20 +160,13 @@
 /* ═══════════════════════════════════════════════════════════════
    הטופס.
 
-   הכאב שאלון תיאר: "אני לא רוצה לפספס פניות. היום הן מתערבבות לי
-   בוואטסאפ ואני מגלה אותן אחרי שבוע."
-
-   לכן הכלל כאן הוא: פנייה לא הולכת לאיבוד. אם ה-webhook נכשל —
-   ורשת חלשה באמצע יום עבודה זה בדיוק המצב שאלון תיאר — הדף לא
-   אומר "שגיאה" ומוחק את מה שהמשתמש כתב. הוא מייצר קישור וואטסאפ
-   עם כל הטקסט בפנים, כדי שהפנייה תגיע בכל זאת.
+   כשהשליחה נכשלת הדף לא מרוקן את השדות. מה שהוקלד נשאר במקומו,
+   כך שאפשר ללחוץ "שליחה" שוב בלי להקליד הכל מחדש.
    ═══════════════════════════════════════════════════════════════ */
 
-/* ← למלא אחרי שה-webhook של n8n קם. ריק = הדף עובר ישר לוואטסאפ. */
+/* ← למלא אחרי שה-webhook של n8n קם.
+   ריק = כל שליחה תיפול להודעת "נסה שוב". */
 const WEBHOOK_URL = '';
-
-/* פורמט בינלאומי לוואטסאפ. TODO: להחליף כשיש מספר אמיתי. */
-const WHATSAPP = '972540000000';
 
 const form = document.getElementById('lead');
 const send = document.getElementById('send');
@@ -186,14 +179,10 @@ const fail = document.getElementById('fail');
    ו-.trim() עליה היה מפיל את כל השליחה. */
 const $ = (id) => document.getElementById(id);
 
-const show = (el, html) => { el.innerHTML = html; el.hidden = false; };
+/* textContent ולא innerHTML: אין כאן הודעה שצריכה תגיות,
+   ובלי innerHTML אין דרך שטקסט שהמשתמש הקליד יגיע ל-DOM כ-HTML. */
+const show = (el, text) => { el.textContent = text; el.hidden = false; };
 const hide = (el) => { el.hidden = true; };
-
-function waLink({ name, phone, message }) {
-  const text = `שלום אלון, הגעתי מהאתר.\nשם: ${name}\nטלפון: ${phone}` +
-               (message ? `\nמה צריך: ${message}` : '');
-  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
-}
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -241,13 +230,8 @@ form.addEventListener('submit', async (e) => {
     form.reset();
     show(ok, 'קיבלתי. אלון יחזור אליך.');
   } catch (err) {
-    /* לא מוחקים כלום. נותנים לפנייה דרך שנייה להגיע. */
-    show(fail,
-      'השליחה לא עברה — כנראה הרשת. ' +
-      `<a href="${waLink(data)}" target="_blank" rel="noopener">` +
-      'לשלוח את אותם פרטים בוואטסאפ</a> ' +
-      `או להתקשר <a href="tel:0540000000">054-000-0000</a>.`
-    );
+    /* השדות נשארים מלאים — form.reset() רץ רק בהצלחה. */
+    show(fail, 'השליחה לא עברה — כנראה הרשת. אפשר לנסות שוב.');
   } finally {
     send.disabled = false;
     send.textContent = 'שליחה';
