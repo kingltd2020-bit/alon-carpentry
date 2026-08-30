@@ -131,7 +131,12 @@ h1{font-size:33px;line-height:1.24;font-weight:600;letter-spacing:-.4px;text-wra
 }
 .field textarea{min-height:108px;resize:vertical}
 .field input:focus,.field textarea:focus{border-color:var(--tan);outline:none}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* מלכודת הספאם מוסתרת בטכניקת clip ולא ב-left:-9999px.
+   ב-RTL כיוון הגלילה הפוך, ואלמנט שמוזז 9999px שמאלה יוצר
+   גלילה אופקית של 10,000px בכל הדף. נמדד: scrollWidth היה
+   10319 ברוחב 320. clip-path מסתיר בלי לייצר overflow. */
+.hp{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;
+    overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 .note{font-size:14px;line-height:1.6;border-radius:3px;padding:14px;margin-top:4px}
 .note-ok{background:#2F261D;border:1px solid var(--tan);color:var(--paper)}
