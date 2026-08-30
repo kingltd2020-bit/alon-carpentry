@@ -80,7 +80,7 @@ alon-carpentry/
 | ללא Google Fonts | פונט מערכת | פונט חיצוני = רכיבת רשת לדומיין נוסף לפני שהטקסט מצויר. האופי מגיע מהסקאלה והמרווחים |
 | `style.css` נפרד | קובץ חיצוני | דרישת המטלה: `index.html` ו-`style.css`. ה-`<link>` יושב בראש ה-head כדי שהדפדפן יגלה אותו מוקדם |
 | לוגו PNG ולא WebP | PNG-8, 64 צבעים | נמדד: WebP q85 הגיע ל-20.9KB, PNG מקוונטז ל-8.9KB. הלוגו שטוח מדי מכדי ש-WebP ירוויח |
-| אזור תמונה אחד | placeholder ביחס 3:2 | ללקוח אין צילומים והוא ביקש לא להמציא. `aspect-ratio` מקבע את הגובה כך שאין קפיצה כשהתמונה תיכנס |
+| אזור תמונה אחד | תמונת AI מ-Cloudinary, יחס 3:2 | ללקוח אין צילומים. התמונה **נוצרה ב-AI ומתועדת ככזו** ב-`business-facts.md`. `c_fill,ar_3:2,g_east` שומר את השלט שלם, `q_auto,f_auto` מגישים webp/avif (‏40KB ב-520px), ו-`aspect-ratio` על `.slot` מקבע את הגובה כך שאין קפיצה |
 | כישלון שליחה | הודעת "לנסות שוב", השדות נשמרים | `form.reset()` רץ רק בהצלחה, כך שלחיצה חוזרת לא דורשת להקליד מחדש. אין ערוץ גיבוי מומצא — כל אמצעי קשר בדף חייב להופיע ב-`business-facts.md` |
 
 ---
@@ -88,5 +88,10 @@ alon-carpentry/
 ## מה נשאר
 
 - [ ] פרטי קשר אמיתיים → להסיר `noindex`
-- [ ] לבנות את ה-workflow ב-n8n ולמלא `WEBHOOK_URL`
-- [ ] להעלות את תמונת בית המלאכה ל-Cloudinary ולהחליף את ה-placeholder
+- [x] ~~להעלות תמונה ל-Cloudinary ולהחליף את ה-placeholder~~ — `alon/workshop-scene`
+- [x] ~~גיליון היעד לפניות~~ — [נוצר](https://docs.google.com/spreadsheets/d/1Gmzxx20YxMuI1slw34awWj4RENGRBowLndpboOKDtuw/edit), 6 עמודות
+- [x] ~~להגדיר את ה-workflow~~ — [`docs/alon-leads.workflow.json`](docs/alon-leads.workflow.json), מוכן לייבוא
+- [ ] **לייבא ל-n8n, לחבר credentials, Activate** → ולמלא `WEBHOOK_URL`
+- [ ] להחליט על הוולידציה בצד n8n לפני Activate — [למה זה חשוב](docs/n8n-setup.md)
+- [ ] לנעול `Allowed Origins` לדומיין האמיתי אחרי הפריסה (כרגע `*`)
+- [ ] להחליט על גילוי נאות גלוי לתמונת ה-AI — [שלוש אפשרויות](docs/business-facts.md)

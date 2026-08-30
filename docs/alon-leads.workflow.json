@@ -1,0 +1,165 @@
+{
+  "name": "אלון נגרות · פניות מהאתר",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "alon-lead",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        0
+      ],
+      "webhookId": "a1000000-0000-4000-8000-0000000000ff"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Gmzxx20YxMuI1slw34awWj4RENGRBowLndpboOKDtuw",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "גיליון1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "תאריך": "={{ $now.setZone('Asia/Jerusalem').toFormat('dd/MM/yyyy HH:mm') }}",
+            "שם": "={{ $('Webhook').item.json.body.name }}",
+            "טלפון": "={{ $('Webhook').item.json.body.phone }}",
+            "מייל": "={{ $('Webhook').item.json.body.email }}",
+            "הודעה": "={{ $('Webhook').item.json.body.message || '' }}",
+            "סטטוס": "חדש"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000002",
+      "name": "שורה בגיליון",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "kingltd2020@gmail.com",
+        "subject": "=פנייה חדשה מהאתר של אלון נגרות — {{ $('Webhook').item.json.body.name }}",
+        "emailType": "html",
+        "message": "=<div dir=\"rtl\" style=\"background:#F7F2E9;padding:20px 12px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td align=\"center\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"max-width:520px;background:#FFFFFF;border:1px solid #E0D6C6;border-radius:4px;font-family:Arial,Helvetica,sans-serif;\"><tr><td style=\"padding:22px 24px 4px;font-size:13px;font-weight:bold;letter-spacing:1.2px;color:#99694D;\">פנייה חדשה מהאתר</td></tr><tr><td style=\"padding:0 24px 16px;font-size:21px;font-weight:bold;color:#241C15;\">{{ ($('Webhook').item.json.body.name || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td style=\"padding:0 24px 20px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;\"><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:14px;color:#8B8271;\">שם</td><td valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:15px;color:#241C15;\">{{ ($('Webhook').item.json.body.name || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:14px;color:#8B8271;\">טלפון</td><td valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:15px;color:#241C15;\">{{ ($('Webhook').item.json.body.phone || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:14px;color:#8B8271;\">מייל</td><td valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:15px;color:#241C15;\">{{ ($('Webhook').item.json.body.email || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:14px;color:#8B8271;\">הודעה</td><td valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:15px;color:#241C15;\">{{ (($('Webhook').item.json.body.message || '').trim() || 'לא נכתבה הודעה').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\\n/g,'<br>') }}</td></tr><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;font-size:14px;color:#8B8271;\">נשלח</td><td valign=\"top\" style=\"padding:10px 0;font-size:15px;color:#241C15;\">{{ $now.setZone('Asia/Jerusalem').toFormat('dd/MM/yyyy HH:mm') }}</td></tr></table></td></tr><tr><td style=\"padding:14px 24px;background:#F1EADD;border-top:1px solid #E0D6C6;font-size:13px;color:#8B8271;\">להשיב ישירות ל-<a href=\"mailto:{{ $('Webhook').item.json.body.email }}\" style=\"color:#7A5039;\">{{ ($('Webhook').item.json.body.email || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</a></td></tr></table></td></tr></table></div>",
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000003",
+      "name": "התראה לאלון",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "=קיבלתי את הפנייה שלך — אלון נגרות",
+        "emailType": "html",
+        "message": "=<div dir=\"rtl\" style=\"background:#F7F2E9;padding:24px 12px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td align=\"center\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"max-width:520px;background:#FFFFFF;border:1px solid #E0D6C6;border-radius:4px;font-family:Arial,Helvetica,sans-serif;color:#241C15;\"><tr><td style=\"padding:26px 26px 6px;font-size:13px;font-weight:bold;letter-spacing:1.4px;color:#99694D;\">אלון · נגרות בהתאמה אישית</td></tr><tr><td style=\"padding:0 26px 14px;font-size:22px;font-weight:bold;line-height:1.35;\">תודה, {{ ($('Webhook').item.json.body.name || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}. הפנייה נקלטה.</td></tr><tr><td style=\"padding:0 26px 20px;font-size:15px;line-height:1.65;color:#6B5A4A;\">מדבר אלון. קיבלתי את הפרטים שלך מהאתר, ואני אחזור אליך.</td></tr><tr><td style=\"padding:0 26px 8px;font-size:13px;font-weight:bold;letter-spacing:1.2px;color:#99694D;\">מה נקלט</td></tr><tr><td style=\"padding:0 26px 22px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;\"><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:14px;color:#8B8271;\">שם</td><td valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:15px;color:#241C15;\">{{ ($('Webhook').item.json.body.name || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:14px;color:#8B8271;\">טלפון</td><td valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:15px;color:#241C15;\">{{ ($('Webhook').item.json.body.phone || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:14px;color:#8B8271;\">מייל</td><td valign=\"top\" style=\"padding:10px 0;border-bottom:1px solid #F1EADD;font-size:15px;color:#241C15;\">{{ ($('Webhook').item.json.body.email || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }}</td></tr><tr><td width=\"78\" valign=\"top\" style=\"padding:10px 0;font-size:14px;color:#8B8271;\">הודעה</td><td valign=\"top\" style=\"padding:10px 0;font-size:15px;color:#241C15;\">{{ (($('Webhook').item.json.body.message || '').trim() || 'לא נכתבה הודעה').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\\n/g,'<br>') }}</td></tr></table></td></tr><tr><td style=\"padding:0 26px 26px;font-size:13px;line-height:1.6;color:#8B8271;\">אם משהו כאן לא נכון — אפשר להשיב למייל הזה ולתקן.</td></tr><tr><td style=\"padding:16px 26px;background:#F1EADD;border-top:1px solid #E0D6C6;font-size:12px;line-height:1.7;color:#8B8271;\">אלון · נגרות בהתאמה אישית · פרדס חנה<br>בית מלאכה ברחוב הבנים · קבלה בתיאום מראש</td></tr></table></td></tr></table></div>",
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000004",
+      "name": "אישור לפונה",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"ok\": true }",
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000005",
+      "name": "תשובה לדף",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "שורה בגיליון",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "שורה בגיליון": {
+      "main": [
+        [
+          {
+            "node": "התראה לאלון",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "התראה לאלון": {
+      "main": [
+        [
+          {
+            "node": "אישור לפונה",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "אישור לפונה": {
+      "main": [
+        [
+          {
+            "node": "תשובה לדף",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
