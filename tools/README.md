@@ -1,5 +1,12 @@
 # tools/
 
+שני קובצי בדיקה. יחד הם מכסים את שני מסלולי הטופס:
+`check.js` את מה שקורה כשהשליחה נכשלת, `check-success.js` את מה
+שקורה כשהיא מצליחה. בלי השני, מסלול ההצלחה לא נבדק אף פעם —
+כי `WEBHOOK_URL` ריק בקוד.
+
+---
+
 ## check.js — בדיקות הדף
 
 15 בדיקות שרצות על הדף האמיתי בדפדפן, בארבעה רוחבי מסך.
@@ -52,3 +59,36 @@ rm t.html
 **הערה:** `--screenshot` של chrome-headless-shell מחזיר במכונה הזו תמונה
 ריקה בלי טקסט. המדידות דרך `--dump-dom` עובדות, ולצורך אימות פריסה הן
 ממילא אמינות יותר מצילום מסך.
+
+
+---
+
+## check-success.js — מסלול ההצלחה
+
+11 בדיקות. מחליף את `fetch` בתשובת 200 מזויפת ובודק שני דברים:
+
+**מה נשלח ל-n8n** — `POST`, `Content-Type: application/json`, וב-payload
+כל ארבעת שדות הטופס, `company` (בלעדיו n8n לא יכול לסנן בוטים)
+ו-`sentAt` תקין.
+
+**מה הדף עושה אחרי** — הודעת "קיבלתי" מוצגת, הודעת השגיאה לא,
+הטופס מתרוקן (רק בהצלחה), והכפתור חוזר לעצמו.
+
+`fetch` מוחלף אחרי `load` ולא לפניו — הוא נקרא בתוך המטפל בשליחה,
+לא בטעינת הדף.
+
+### הרצה
+
+צריך להחליף את `WEBHOOK_URL` בערך כלשהו, אחרת הקוד נופל
+לענף השגיאה לפני שהוא מגיע ל-`fetch`:
+
+```bash
+sed "s|const WEBHOOK_URL = '';|const WEBHOOK_URL = 'https://n8n.test/stub';|"     index.html > s.html
+echo '<script>' >> s.html && cat tools/check-success.js >> s.html && echo '</script>' >> s.html
+chrome --headless --disable-gpu --virtual-time-budget=8000 --window-size=390,900        --dump-dom "file:///$PWD/s.html" | grep -o '<title>RESULTS[^<]*'
+rm s.html
+```
+
+**מה זה לא בודק:** שום דבר בצד n8n. ה-`fetch` מזויף, אין קריאת רשת
+אמיתית, ואף מייל לא נשלח. את הצד השני בודקים לפי הטבלה בסוף
+[`../docs/n8n-setup.md`](../docs/n8n-setup.md).
