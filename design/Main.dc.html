@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; }
+    .pg h1, .pg h2, .pg p, .pg ul, .pg ol, .pg li, .pg dl, .pg dd { margin: 0; }
+    .pg ul, .pg ol { list-style: none; padding: 0; }
+    a { color: #7A5039; text-decoration: none; }
+    a:hover { color: #5D3B2D; }
+  </style>
+</helmet>
+
+<div class="pg" dir="rtl" style="width: 390px; background: #F7F2E9; color: #241C15; font-family: system-ui, -apple-system, Segoe UI, Noto Sans Hebrew, Arial, sans-serif; direction: rtl; -webkit-font-smoothing: antialiased;">
+
+  <div style="display: flex; flex-direction: column; gap: 18px; padding: 30px 24px 34px;">
+    <img src="logo.png" alt="אלון — נגרות בהתאמה אישית" style="width: 208px; height: 65px; align-self: flex-start;">
+
+    <h1 style="font-size: 33px; line-height: 1.24; font-weight: 600; letter-spacing: -0.4px;">
+      רהיטים בהזמנה אישית,<br>לפי המידות שלך
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.6; color: #6B5A4A;">
+      נגר עצמאי בפרדס חנה. עובד לבד מ־2017.
+    </p>
+
+    <a href="#form" style="display: flex; align-items: center; justify-content: center; height: 54px; background: {{accent}}; color: #F7F2E9; font-size: 17px; font-weight: 600; border-radius: 3px;">
+      לכתוב לאלון מה צריך
+    </a>
+
+    <div style="display: flex; align-items: center; gap: 9px; font-size: 14px; color: #6B5A4A;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle>
+      </svg>
+      <span>בית מלאכה ברחוב הבנים · קבלה בתיאום מראש</span>
+    </div>
+  </div>
+
+  <div style="width: 390px; height: 260px; background: #E6DFD3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border-top: 1px solid #E0D6C6; border-bottom: 1px solid #E0D6C6;">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#A8998A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.6"></circle><path d="m3 16 5-4 4 3 3-2 6 5"></path>
+    </svg>
+    <span style="font-size: 13px; color: #8C7E6F; letter-spacing: 0.2px;">[ מקום שמור לתמונה · יחס 3:2 ]</span>
+  </div>
+
+  <div style="padding: 40px 24px 34px;">
+    <h2 style="font-size: 13px; font-weight: 600; letter-spacing: 1.6px; color: #99694D; margin-bottom: 4px;">מה אני עושה</h2>
+    <ul style="display: flex; flex-direction: column;">
+      <li style="font-size: 20px; line-height: 1.4; padding: 17px 0; border-bottom: 1px solid #E0D6C6;">שולחנות אוכל וסלון</li>
+      <li style="font-size: 20px; line-height: 1.4; padding: 17px 0; border-bottom: 1px solid #E0D6C6;">ארונות ומזנונים</li>
+      <li style="font-size: 20px; line-height: 1.4; padding: 17px 0;">ספריות וקירות אחסון</li>
+    </ul>
+  </div>
+
+  <div style="background: #F1EADD; border-top: 1px solid #E0D6C6; border-bottom: 1px solid #E0D6C6; padding: 40px 24px;">
+    <h2 style="font-size: 13px; font-weight: 600; letter-spacing: 1.6px; color: #99694D; margin-bottom: 22px;">איך זה עובד</h2>
+    <ol style="display: flex; flex-direction: column; gap: 22px;">
+      <li style="display: flex; gap: 15px; align-items: flex-start;">
+        <span style="flex: 0 0 26px; font-size: 13px; font-weight: 600; color: {{accent}}; padding-top: 3px;">01</span>
+        <span style="font-size: 16px; line-height: 1.55;">שיחת טלפון ראשונה, להבין מה צריך</span>
+      </li>
+      <li style="display: flex; gap: 15px; align-items: flex-start;">
+        <span style="flex: 0 0 26px; font-size: 13px; font-weight: 600; color: {{accent}}; padding-top: 3px;">02</span>
+        <span style="font-size: 16px; line-height: 1.55;">אני מגיע לבית ומודד</span>
+      </li>
+      <li style="display: flex; gap: 15px; align-items: flex-start;">
+        <span style="flex: 0 0 26px; font-size: 13px; font-weight: 600; color: {{accent}}; padding-top: 3px;">03</span>
+        <span style="font-size: 16px; line-height: 1.55;">שולח סקיצה עם הצעת מחיר</span>
+      </li>
+      <li style="display: flex; gap: 15px; align-items: flex-start;">
+        <span style="flex: 0 0 26px; font-size: 13px; font-weight: 600; color: {{accent}}; padding-top: 3px;">04</span>
+        <span style="font-size: 16px; line-height: 1.55;">אחרי אישור, הייצור לוקח שלושה עד שישה שבועות</span>
+      </li>
+      <li style="display: flex; gap: 15px; align-items: flex-start;">
+        <span style="flex: 0 0 26px; font-size: 13px; font-weight: 600; color: {{accent}}; padding-top: 3px;">05</span>
+        <span style="font-size: 16px; line-height: 1.55;">אני מרכיב במקום, וזה כלול במחיר</span>
+      </li>
+    </ol>
+  </div>
+
+  <div style="padding: 40px 24px;">
+    <h2 style="font-size: 13px; font-weight: 600; letter-spacing: 1.6px; color: #99694D; margin-bottom: 6px;">פרטים</h2>
+    <dl style="display: flex; flex-direction: column;">
+      <div style="padding: 18px 0; border-bottom: 1px solid #E0D6C6;">
+        <dt style="font-size: 14px; color: #6B5A4A; margin-bottom: 5px;">העץ</dt>
+        <dd style="font-size: 17px; line-height: 1.5;">אלון, אגוז ואורן. מיובש בתנור לפני העבודה</dd>
+      </div>
+      <div style="padding: 18px 0; border-bottom: 1px solid #E0D6C6;">
+        <dt style="font-size: 14px; color: #6B5A4A; margin-bottom: 5px;">אחריות</dt>
+        <dd style="font-size: 17px; line-height: 1.5;">שנתיים על העבודה</dd>
+      </div>
+      <div style="padding: 18px 0;">
+        <dt style="font-size: 14px; color: #6B5A4A; margin-bottom: 5px;">מחיר</dt>
+        <dd style="font-size: 17px; line-height: 1.5;">אין מחירון. כל עבודה מתומחרת לגופה</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div style="background: #241C15; color: #F7F2E9; padding: 42px 24px 46px;">
+    <h2 style="font-size: 26px; font-weight: 600; line-height: 1.3; margin-bottom: 10px;">מה אתה צריך?</h2>
+    <p style="font-size: 15px; line-height: 1.6; color: #B8A995; margin-bottom: 26px;">
+      כותבים כאן, וזה מגיע לאלון מסודר.
+    </p>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <span style="font-size: 14px; color: #B8A995;">שם</span>
+        <div style="height: 50px; background: #2F261D; border: 1px solid #4A3E31; border-radius: 3px;"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <span style="font-size: 14px; color: #B8A995;">טלפון</span>
+        <div style="height: 50px; background: #2F261D; border: 1px solid #4A3E31; border-radius: 3px;"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <span style="font-size: 14px; color: #B8A995;">מה צריך?</span>
+        <div style="height: 108px; background: #2F261D; border: 1px solid #4A3E31; border-radius: 3px;"></div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center; height: 54px; background: #D9A967; color: #241C15; font-size: 17px; font-weight: 600; border-radius: 3px; margin-top: 6px;">
+        שליחה
+      </div>
+      <a href="tel:0540000000" style="display: flex; align-items: center; justify-content: center; gap: 9px; height: 50px; border: 1px solid #4A3E31; border-radius: 3px; color: #F7F2E9; font-size: 16px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9A967" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.2 2 2 0 0 1 5.5 3Z"></path>
+        </svg>
+        או להתקשר · 054-000-0000
+      </a>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 7px; padding: 26px 24px 34px; font-size: 14px; line-height: 1.7; color: #6B5A4A;">
+    <span>אלון · נגרות בהתאמה אישית</span>
+    <span>רחוב הבנים, פרדס חנה · בתיאום מראש</span>
+    <span>alon@example.co.il</span>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#7A5039","options":["#7A5039","#99694D","#5D3B2D","#6B4530"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#7A5039' };
+  }
+}
+</script>
+</body>
+</html>
