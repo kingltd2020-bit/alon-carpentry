@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>אלון — נגרות בהתאמה אישית | פרדס חנה</title>
+<meta name="description" content="נגר עצמאי בפרדס חנה מ־2017. שולחנות, ארונות וספריות בהזמנה אישית, לפי המידות שלך. מדידה בבית, אחריות שנתיים, הרכבה כלולה במחיר.">
+
+<!-- ══════════════════════════════════════════════════════════════════
+     ⚠️  להסיר לפני עלייה לאוויר ⚠️
+     הטלפון והמייל בדף הם ערכי דמה שהגיעו כך מהמייל של אלון
+     (054-000-0000 · alon@example.co.il).
+     noindex מונע מגוגל לאנדקס מספר טלפון שאף אחד לא עונה בו.
+     ברגע שיש פרטים אמיתיים: לעדכן ב-docs/business-facts.md,
+     להחליף בדף, ולמחוק את השורה הבאה.
+     ══════════════════════════════════════════════════════════════════ -->
+<meta name="robots" content="noindex">
+
+<meta name="theme-color" content="#F7F2E9">
+<meta property="og:type" content="website">
+<meta property="og:title" content="אלון — נגרות בהתאמה אישית">
+<meta property="og:description" content="נגר עצמאי בפרדס חנה מ־2017. רהיטים בהזמנה אישית, לפי המידות שלך.">
+<meta property="og:image" content="assets/logo.png">
+<meta property="og:locale" content="he_IL">
+
+<link rel="icon" href="assets/icon-64.png" sizes="64x64" type="image/png">
+<link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+
+<!-- הלוגו הוא ה-LCP. preload מתחיל את ההורדה לפני שהפרסר מגיע ל-<img>. -->
+<link rel="preload" as="image" href="assets/logo.png" fetchpriority="high">
+
+<!-- ה-CSS משובץ בכוונה. הדרישה של אלון היא פתיחה מהירה ברשת חלשה,
+     וקובץ CSS חיצוני הוא רכיבת רשת נוספת שחוסמת ציור.
+     בגודל הזה (~4KB) השיבוץ מנצח קאשינג. -->
+<style>
+:root{
+  --paper:#F7F2E9; --paper-2:#F1EADD; --slot:#E6DFD3;
+  --ink:#241C15;   --ink-2:#6B5A4A;
+  --accent:#7A5039; --brand:#99694D; --tan:#D9A967;
+  --rule:#E0D6C6;
+  --pad:24px;
+  --font:system-ui,-apple-system,"Segoe UI","Noto Sans Hebrew","Arial Hebrew",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{list-style:none;padding:0}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--accent);text-decoration:none}
+
+/* הדף צר בכוונה. גם על דסקטופ הוא נשאר עמודה אחת קריאה —
+   אין סיבה לפרוס לשלוש עמודות דף שנועד לטלפון. */
+.wrap{max-width:520px;margin-inline:auto;background:var(--paper)}
+
+.pad{padding-inline:var(--pad)}
+.sec{padding-block:40px}
+
+.eyebrow{
+  font-size:13px;font-weight:600;letter-spacing:1.6px;color:var(--brand);
+}
+
+/* ── hero ─────────────────────────────────────────────── */
+.hero{display:flex;flex-direction:column;gap:18px;padding-block:30px 34px}
+.logo{width:208px;height:65px}
+h1{font-size:33px;line-height:1.24;font-weight:600;letter-spacing:-.4px;text-wrap:balance}
+.lede{color:var(--ink-2)}
+.where{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--ink-2)}
+.where svg{flex:0 0 auto}
+
+/* ── כפתורים ──────────────────────────────────────────── */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  min-height:54px;padding:14px 20px;border-radius:3px;
+  font:inherit;font-size:17px;font-weight:600;
+  border:1px solid transparent;cursor:pointer;width:100%;
+  transition:background-color .15s ease;
+}
+.btn-primary{background:var(--accent);color:var(--paper)}
+.btn-primary:hover{background:#5D3B2D}
+.btn-send{background:var(--tan);color:var(--ink)}
+.btn-send:hover{background:#E8C08A}
+.btn-ghost{background:transparent;color:var(--paper);border-color:#4A3E31;min-height:50px;font-weight:400;font-size:16px}
+.btn-ghost:hover{background:#2F261D}
+
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* ── אזור התמונה ──────────────────────────────────────── */
+/* aspect-ratio מקבע את הגובה מראש, כך שאין קפיצת פריסה
+   כשהתמונה האמיתית תיכנס לכאן. */
+.slot{
+  aspect-ratio:3/2;background:var(--slot);
+  border-block:1px solid var(--rule);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  color:#8C7E6F;font-size:13px;
+}
+
+/* ── רשימות ───────────────────────────────────────────── */
+.rows li{font-size:20px;line-height:1.4;padding-block:17px;border-bottom:1px solid var(--rule)}
+.rows li:last-child{border-bottom:0}
+
+.steps{background:var(--paper-2);border-block:1px solid var(--rule)}
+.steps ol{display:flex;flex-direction:column;gap:22px;margin-top:22px}
+.steps li{display:flex;gap:15px;align-items:flex-start}
+.num{flex:0 0 26px;font-size:13px;font-weight:600;color:var(--accent);padding-top:3px}
+.steps p{font-size:16px;line-height:1.55}
+
+.facts div{padding-block:18px;border-bottom:1px solid var(--rule)}
+.facts div:last-child{border-bottom:0}
+.facts dt{font-size:14px;color:var(--ink-2);margin-bottom:5px}
+.facts dd{font-size:17px;line-height:1.5}
+
+/* ── טופס ─────────────────────────────────────────────── */
+.form{background:var(--ink);color:var(--paper);padding-block:42px 46px}
+.form h2{font-size:26px;font-weight:600;line-height:1.3}
+.form .sub{font-size:15px;color:#B8A995;margin-top:10px;margin-bottom:26px}
+.fields{display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:14px;color:#B8A995}
+.field input,.field textarea{
+  font:inherit;font-size:16px;         /* 16px מונע זום אוטומטי ב-iOS */
+  color:var(--paper);background:#2F261D;
+  border:1px solid #4A3E31;border-radius:3px;padding:14px;
+  min-height:50px;width:100%;
+}
+.field textarea{min-height:108px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--tan);outline:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.note{font-size:14px;line-height:1.6;border-radius:3px;padding:14px;margin-top:4px}
+.note-ok{background:#2F261D;border:1px solid var(--tan);color:var(--paper)}
+.note-fail{background:#2F261D;border:1px solid #C8452F;color:var(--paper)}
+.note a{color:var(--tan);text-decoration:underline}
+[hidden]{display:none!important}
+
+footer{padding-block:26px 34px;font-size:14px;line-height:1.7;color:var(--ink-2)}
+footer p+p{margin-top:7px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <header class="hero pad">
+    <img class="logo" src="assets/logo.png" width="208" height="65"
+         alt="אלון — נגרות בהתאמה אישית" fetchpriority="high">
+
+    <h1>רהיטים בהזמנה אישית,<br>לפי המידות שלך</h1>
+
+    <p class="lede">נגר עצמאי בפרדס חנה. עובד לבד מ־2017.</p>
+
+    <a class="btn btn-primary" href="#form">לכתוב לאלון מה צריך</a>
+
+    <p class="where">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
+           stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      בית מלאכה ברחוב הבנים · קבלה בתיאום מראש
+    </p>
+  </header>
+
+  <!-- ══ אזור התמונה ═══════════════════════════════════ -->
+  <!-- ריק בכוונה. לאלון אין צילומים, והוא ביקש לא להמציא.
+       להחליף בתמונה ביחס 3:2 דרך Cloudinary. -->
+  <figure class="slot">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#A8998A"
+         stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="16" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.6"/>
+      <path d="m3 16 5-4 4 3 3-2 6 5"/>
+    </svg>
+    <figcaption>[ מקום שמור לתמונה · יחס 3:2 ]</figcaption>
+  </figure>
+
+  <!-- ══ מה אני עושה ═══════════════════════════════════ -->
+  <section class="sec pad">
+    <h2 class="eyebrow">מה אני עושה</h2>
+    <ul class="rows">
+      <li>שולחנות אוכל וסלון</li>
+      <li>ארונות ומזנונים</li>
+      <li>ספריות וקירות אחסון</li>
+    </ul>
+  </section>
+
+  <!-- ══ איך זה עובד ═══════════════════════════════════ -->
+  <section class="steps sec pad">
+    <h2 class="eyebrow">איך זה עובד</h2>
+    <ol>
+      <li><span class="num">01</span><p>שיחת טלפון ראשונה, להבין מה צריך</p></li>
+      <li><span class="num">02</span><p>אני מגיע לבית ומודד</p></li>
+      <li><span class="num">03</span><p>שולח סקיצה עם הצעת מחיר</p></li>
+      <li><span class="num">04</span><p>אחרי אישור, הייצור לוקח שלושה עד שישה שבועות</p></li>
+      <li><span class="num">05</span><p>אני מרכיב במקום, וזה כלול במחיר</p></li>
+    </ol>
+  </section>
+
+  <!-- ══ פרטים ═════════════════════════════════════════ -->
+  <section class="sec pad">
+    <h2 class="eyebrow">פרטים</h2>
+    <dl class="facts">
+      <div><dt>העץ</dt><dd>אלון, אגוז ואורן. מיובש בתנור לפני העבודה</dd></div>
+      <div><dt>אחריות</dt><dd>שנתיים על העבודה</dd></div>
+      <div><dt>מחיר</dt><dd>אין מחירון. כל עבודה מתומחרת לגופה</dd></div>
+    </dl>
+  </section>
+
+  <!-- ══ טופס ══════════════════════════════════════════ -->
+  <section class="form pad" id="form">
+    <h2>מה אתה צריך?</h2>
+    <p class="sub">כותבים כאן, וזה מגיע לאלון מסודר.</p>
+
+    <form class="fields" id="lead" novalidate>
+      <div class="field">
+        <label for="name">שם</label>
+        <input id="name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="phone">טלפון</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+      </div>
+      <div class="field">
+        <label for="msg">מה צריך?</label>
+        <textarea id="msg" name="message" rows="4"></textarea>
+      </div>
+
+      <!-- מלכודת ספאם: בני אדם לא רואים את השדה, בוטים ממלאים אותו -->
+      <div class="hp" aria-hidden="true">
+        <label for="company">חברה</label>
+        <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button class="btn btn-send" type="submit" id="send">שליחה</button>
+
+      <p class="note note-ok"    id="ok"   hidden role="status"></p>
+      <p class="note note-fail"  id="fail" hidden role="alert"></p>
+
+      <a class="btn btn-ghost" href="tel:0540000000">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--tan)"
+             stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.2 2 2 0 0 1 5.5 3Z"/>
+        </svg>
+        או להתקשר · 054-000-0000
+      </a>
+    </form>
+  </section>
+
+  <footer class="pad">
+    <p>אלון · נגרות בהתאמה אישית</p>
+    <p>רחוב הבנים, פרדס חנה · בתיאום מראש</p>
+    <p><a href="mailto:alon@example.co.il">alon@example.co.il</a></p>
+  </footer>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   הטופס.
+
+   הכאב שאלון תיאר: "אני לא רוצה לפספס פניות. היום הן מתערבבות לי
+   בוואטסאפ ואני מגלה אותן אחרי שבוע."
+
+   לכן הכלל כאן הוא: פנייה לא הולכת לאיבוד. אם ה-webhook נכשל —
+   ורשת חלשה באמצע יום עבודה זה בדיוק המצב שאלון תיאר — הדף לא
+   אומר "שגיאה" ומוחק את מה שהמשתמש כתב. הוא מייצר קישור וואטסאפ
+   עם כל הטקסט בפנים, כדי שהפנייה תגיע בכל זאת.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ← למלא אחרי שה-webhook של n8n קם. ריק = הדף עובר ישר לוואטסאפ. */
+const WEBHOOK_URL = '';
+
+/* פורמט בינלאומי לוואטסאפ. TODO: להחליף כשיש מספר אמיתי. */
+const WHATSAPP = '972540000000';
+
+const form = document.getElementById('lead');
+const send = document.getElementById('send');
+const ok   = document.getElementById('ok');
+const fail = document.getElementById('fail');
+
+/* קוראים לשדות ב-getElementById ולא ב-form.name.
+   ל-HTMLFormElement יש כבר תכונה בשם name (שם הטופס עצמו),
+   והיא מסתירה את השדה — form.name היה מחזיר מחרוזת ריקה
+   ו-.trim() עליה היה מפיל את כל השליחה. */
+const $ = (id) => document.getElementById(id);
+
+const show = (el, html) => { el.innerHTML = html; el.hidden = false; };
+const hide = (el) => { el.hidden = true; };
+
+function waLink({ name, phone, message }) {
+  const text = `שלום אלון, הגעתי מהאתר.\nשם: ${name}\nטלפון: ${phone}` +
+               (message ? `\nמה צריך: ${message}` : '');
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  hide(ok); hide(fail);
+
+  const data = {
+    name:    $('name').value.trim(),
+    phone:   $('phone').value.trim(),
+    message: $('msg').value.trim(),
+    company: $('company').value            // מלכודת הספאם
+  };
+
+  if (data.company) return;                // בוט. לבלוע בשקט.
+
+  if (!data.name || !data.phone) {
+    show(fail, 'צריך שם וטלפון כדי שאלון יוכל לחזור אליך.');
+    return;
+  }
+
+  send.disabled = true;
+  send.textContent = 'שולח…';
+
+  try {
+    if (!WEBHOOK_URL) throw new Error('webhook not configured');
+
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...data,
+        source: 'landing',
+        sentAt: new Date().toISOString()
+      })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+
+    form.reset();
+    show(ok, 'קיבלתי. אלון יחזור אליך.');
+  } catch (err) {
+    /* לא מוחקים כלום. נותנים לפנייה דרך שנייה להגיע. */
+    show(fail,
+      'השליחה לא עברה — כנראה הרשת. ' +
+      `<a href="${waLink(data)}" target="_blank" rel="noopener">` +
+      'לשלוח את אותם פרטים בוואטסאפ</a> ' +
+      `או להתקשר <a href="tel:0540000000">054-000-0000</a>.`
+    );
+  } finally {
+    send.disabled = false;
+    send.textContent = 'שליחה';
+  }
+});
+</script>
+
+<!-- נתונים מובנים. רק עובדות מ-docs/business-facts.md.
+     אין aggregateRating, אין priceRange, אין areaServed —
+     אלון ביקש במפורש שלא להמציא, וסכמה מומצאת היא המצאה. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "אלון — נגרות בהתאמה אישית",
+  "description": "נגר עצמאי בפרדס חנה. רהיטים בהזמנה אישית לפי מידות הלקוח.",
+  "foundingDate": "2017",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "רחוב הבנים",
+    "addressLocality": "פרדס חנה",
+    "addressCountry": "IL"
+  },
+  "telephone": "054-000-0000",
+  "email": "alon@example.co.il",
+  "knowsAbout": ["שולחנות אוכל וסלון", "ארונות ומזנונים", "ספריות וקירות אחסון"]
+}
+</script>
+</body>
+</html>
