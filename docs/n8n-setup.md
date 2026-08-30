@@ -51,6 +51,7 @@
 {
   "name":    "ישראל ישראלי",
   "phone":   "052-1234567",
+  "email":   "israel@example.com",
   "message": "שולחן אוכל 220x100",
   "company": "",
   "source":  "landing",
@@ -67,12 +68,17 @@
 const b = $input.first().json.body ?? $input.first().json;
 
 const digits = String(b.phone ?? '').replace(/\D/g, '');
+const email  = String(b.email ?? '').trim().toLowerCase().slice(0, 120);
 
 return [{
   json: {
-    ok:      !b.company && String(b.name ?? '').trim().length > 1 && digits.length >= 9,
+    ok:      !b.company
+             && String(b.name ?? '').trim().length > 1
+             && digits.length >= 9
+             && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email),
     name:    String(b.name ?? '').trim().slice(0, 80),
     phone:   digits,
+    email,
     message: String(b.message ?? '').trim().slice(0, 1000),
     at:      new Date().toISOString()
   }
@@ -85,6 +91,9 @@ return [{
   אותו. בוט ממלא כל שדה שהוא מוצא. מלא = בוט.
 - `digits.length >= 9` — טלפון ישראלי תקין. `slice` — חוסם ניסיון
   להזריק טקסט ענק.
+- **בדיקת המייל היא חוסמת, לא קוסמטית.** אם היא לא כאן, נוד
+  מייל האישור ינסה לשלוח לכתובת שבורה, ייכשל, ויפיל את כל ההרצה —
+  כולל את השורה בגיליון. הפנייה תיעלם בגלל תו חסר.
 - הכל עובר `String(...)` לפני שנוגעים בו. לעולם לא לסמוך על
   מה שהגיע מהרשת.
 
@@ -98,8 +107,8 @@ return [{
 
 גיליון חדש, לשונית `Leads`, כותרות:
 
-| at | name | phone | message | status |
-|---|---|---|---|---|
+| at | name | phone | email | message | status |
+|---|---|---|---|---|---|
 
 `status` נשארת ריקה. זו העמודה שאלון ימלא ידנית —
 `חזרתי` / `נסגר` / `לא רלוונטי`. **בלעדיה זה רק ערימה,

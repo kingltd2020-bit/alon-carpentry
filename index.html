@@ -233,6 +233,11 @@ footer p+p{margin-top:7px}
         <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
       </div>
       <div class="field">
+        <label for="email">מייל</label>
+        <input id="email" name="email" type="email" inputmode="email"
+               autocomplete="email" required>
+      </div>
+      <div class="field">
         <label for="msg">מה צריך?</label>
         <textarea id="msg" name="message" rows="4"></textarea>
       </div>
@@ -312,14 +317,22 @@ form.addEventListener('submit', async (e) => {
   const data = {
     name:    $('name').value.trim(),
     phone:   $('phone').value.trim(),
+    email:   $('email').value.trim(),
     message: $('msg').value.trim(),
     company: $('company').value            // מלכודת הספאם
   };
 
   if (data.company) return;                // בוט. לבלוע בשקט.
 
-  if (!data.name || !data.phone) {
-    show(fail, 'צריך שם וטלפון כדי שאלון יוכל לחזור אליך.');
+  if (!data.name || !data.phone || !data.email) {
+    show(fail, 'צריך שם, טלפון ומייל כדי שאלון יוכל לחזור אליך.');
+    return;
+  }
+
+  /* בדיקה בסיסית בלבד. הוולידציה האמיתית היא בצד n8n —
+     כתובת שנראית תקינה עדיין יכולה להיות לא קיימת. */
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    show(fail, 'כתובת המייל לא נראית תקינה. אלון שולח לשם אישור.');
     return;
   }
 

@@ -61,10 +61,21 @@
   (!failN.hidden && failN.textContent.includes('שם')) ? pass('empty-rejected')
     : fail('empty-rejected', 'hidden=' + failN.hidden);
 
+  // ---- 7b. FORM: a malformed email is rejected --------------------------
+  failN.hidden = true; okN.hidden = true;
+  document.getElementById('name').value = 'ישראל';
+  document.getElementById('phone').value = '0521234567';
+  document.getElementById('email').value = 'not-an-email';
+  form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+  await tick();
+  (!failN.hidden && failN.textContent.includes('מייל')) ? pass('bad-email-rejected')
+    : fail('bad-email-rejected', 'hidden=' + failN.hidden);
+
   // ---- 8. FORM: honeypot swallows bots ---------------------------------
   failN.hidden = true; okN.hidden = true;
   document.getElementById('name').value = 'בוט';
   document.getElementById('phone').value = '0500000000';
+  document.getElementById('email').value = 'bot@spam.test';
   document.getElementById('company').value = 'spam-corp';
   form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
   await tick();
@@ -75,6 +86,7 @@
   document.getElementById('company').value = '';
   document.getElementById('name').value = 'ישראל ישראלי';
   document.getElementById('phone').value = '052-1234567';
+  document.getElementById('email').value = 'israel@example.com';
   document.getElementById('msg').value = 'שולחן אוכל 220x100';
   form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
   await tick(); await tick();
