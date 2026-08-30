@@ -1,0 +1,19 @@
+# שורות: מנורמלות ל-LF במאגר, native בעותק העבודה.
+# בלי זה גיט מתריע "LF will be replaced by CRLF" בכל קומיט,
+# ובעבודה משותפת בין Windows ל-Linux כל קובץ נראה כאילו שונה כולו.
+* text=auto eol=lf
+
+*.html  text diff=html
+*.css   text
+*.js    text
+*.json  text
+*.md    text
+*.svg   text
+
+# בינאריים: גיט לא ינסה למזג או להראות diff טקסטואלי
+*.png   binary
+*.jpg   binary
+*.webp  binary
+*.ico   binary
+*.docx  binary
+*.woff2 binary
