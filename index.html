@@ -168,15 +168,15 @@
    כך שאפשר ללחוץ "שליחה" שוב בלי להקליד הכל מחדש.
    ═══════════════════════════════════════════════════════════════ */
 
-/* ← למלא אחרי Activate ב-n8n. הצורה:
-     https://<ההוסט-שלך>/webhook/alon-lead
+/* ה-Production URL של ה-workflow ב-n8n. ה-workflow פורסם ופעיל.
 
    ‏/webhook/ ולא /webhook-test/ — כתובת ה-test חיה רק כל עוד לחוץ
    "Listen for test event", ולכן דף שנפרס איתה עובד פעם אחת ואז מפסיק.
 
-   ה-workflow מוכן לייבוא: docs/alon-leads.workflow.json
-   ריק = כל שליחה תיפול להודעת "נסה שוב". */
-const WEBHOOK_URL = '';
+   הכתובת גלויה בקוד המקור — דף סטטי לא יכול להסתיר אותה.
+   ההגנה היא בצד n8n: Allowed Origins ומלכודת הספאם.
+   פירוט וסיכונים: docs/n8n-setup.md */
+const WEBHOOK_URL = 'https://kingltd2020.app.n8n.cloud/webhook/alon-lead';
 
 const form = document.getElementById('lead');
 const send = document.getElementById('send');

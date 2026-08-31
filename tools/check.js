@@ -83,6 +83,14 @@
     : fail('honeypot-silent', 'a note appeared');
 
   // ---- 9. FORM: a failed send shows a retry message and keeps the input -
+  /* fetch מוחלף בכישלון מזויף. כש-WEBHOOK_URL היה ריק,
+     הכישלון נוצר מעצם היעדר של כתובת. עכשיו הכתובת חיה,
+     ובלי ההחלפה הבדיקה הזו היתה שולחת ליד אמיתי ל-n8n
+     בכל הרצה — וגם מעמידה את תוצאת הבדיקה ברשת.
+     מוחלף כאן ולא בראש הקובץ: הבדיקות שלמעלה נעצרות
+     בוולידציה ומעולם לא מגיעות ל-fetch. */
+  window.fetch = () => Promise.reject(new Error('stubbed network failure'));
+
   document.getElementById('company').value = '';
   document.getElementById('name').value = 'ישראל ישראלי';
   document.getElementById('phone').value = '052-1234567';

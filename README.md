@@ -7,13 +7,14 @@
 
 ---
 
-## 🔴 לפני עלייה לאוויר — שלושה דברים חוסמים
+## 🔴 לפני עלייה לאוויר — שני דברים חוסמים
 
 | # | מה | איפה | למה זה חוסם |
 |---|---|---|---|
 | 1 | **הטלפון והמייל הם ערכי דמה** | `index.html`, `docs/business-facts.md` | `054-000-0000` ו-`alon@example.co.il` הגיעו כך מהמייל. אף אחד לא עונה שם |
 | 2 | **`<meta name="robots" content="noindex">`** | `index.html`, בראש הקובץ | שמתי בכוונה — כדי שגוגל לא יאנדקס טלפון מזויף. **למחוק אחרי (1)** |
-| 3 | **`WEBHOOK_URL` ריק** | `index.html`, בבלוק ה-`<script>` | עד שימולא, כל שליחה נופלת להודעת "לנסות שוב". ראה [`docs/n8n-setup.md`](docs/n8n-setup.md) |
+
+~~3. **`WEBHOOK_URL` ריק**~~ — ✅ נסגר ‏2026-08-31. ה-workflow פורסם ופעיל, והכתובת מודבקת בדף. נותרה החלטת הוולידציה בצד n8n: [`docs/n8n-setup.md`](docs/n8n-setup.md)
 
 עד שאלה נסגרים הדף עובד ונראה נכון — הוא פשוט לא מוכן לקישור אמיתי.
 
@@ -91,7 +92,7 @@ alon-carpentry/
 - [x] ~~להעלות תמונה ל-Cloudinary ולהחליף את ה-placeholder~~ — `alon/workshop-scene`
 - [x] ~~גיליון היעד לפניות~~ — [נוצר](https://docs.google.com/spreadsheets/d/1Gmzxx20YxMuI1slw34awWj4RENGRBowLndpboOKDtuw/edit), 6 עמודות
 - [x] ~~להגדיר את ה-workflow~~ — [`docs/alon-leads.workflow.json`](docs/alon-leads.workflow.json), מוכן לייבוא
-- [ ] **לייבא ל-n8n, לחבר credentials, Activate** → ולמלא `WEBHOOK_URL`
+- [x] ~~**לייבא ל-n8n, לחבר credentials, Activate** → ולמלא `WEBHOOK_URL`~~ — פורסם ופעיל
 - [ ] להחליט על הוולידציה בצד n8n לפני Activate — [למה זה חשוב](docs/n8n-setup.md)
 - [ ] לנעול `Allowed Origins` לדומיין האמיתי אחרי הפריסה (כרגע `*`)
 - [ ] להחליט על גילוי נאות גלוי לתמונת ה-AI — [שלוש אפשרויות](docs/business-facts.md)
